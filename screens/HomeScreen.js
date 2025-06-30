@@ -7,6 +7,8 @@ import {
   TouchableOpacity,
 } from "react-native";
 
+const initialData = [];
+
 export default function HomeScreen({ navigation, route }) {
   const [data, setData] = useState(initialData);
 
@@ -77,6 +79,9 @@ export default function HomeScreen({ navigation, route }) {
         }
       >
         <Text style={styles.buttonText}>Criar Tarefas</Text>
+      </TouchableOpacity>
+      <TouchableOpacity style={styles.button} onPress={() => {}}>
+        <Text style={styles.buttonText}>Tarefas Concluídas</Text>
       </TouchableOpacity>
       <TouchableOpacity style={styles.button} onPress={() => setData([])}>
         <Text style={styles.buttonText}>Remover Tarefas</Text>
