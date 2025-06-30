@@ -18,16 +18,18 @@ export default function TaskScreen({ navigation, route }) {
         <Text style={styles.title}>Insira o Título</Text>
         <TextInput
           style={styles.inputStyle}
-          placeholder="Insira Título"
+          placeholder="Insira Título..."
           value={texto}
           onChangeText={setTexto}
         />
         <Text style={styles.title}>Insira o Descrição</Text>
         <TextInput
-          style={styles.inputStyle}
-          placeholder="Insira Descrição"
+          style={[styles.inputStyle, { height: 100 }]}
+          placeholder="Insira Descrição..."
           value={desc}
           onChangeText={setDesc}
+          multiline
+          numberOfLines={4}
         />
       </View>
       <View style={styles.buttonContainer}>
@@ -51,7 +53,7 @@ export default function TaskScreen({ navigation, route }) {
         </TouchableOpacity>
         <TouchableOpacity
           style={[styles.button, { marginTop: 10 }]}
-          onPress={() => navigation.navigate("Home")}
+          onPress={() => navigation.goBack("Home")}
         >
           <Text style={styles.buttonText}>Voltar para Menu</Text>
         </TouchableOpacity>

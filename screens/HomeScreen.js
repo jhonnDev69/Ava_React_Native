@@ -11,6 +11,7 @@ const initialData = [];
 
 export default function HomeScreen({ navigation, route }) {
   const [data, setData] = useState(initialData);
+  const [finished, setFinished] = useState([]);
 
   useEffect(() => {
     if (route.params?.newTask) {
@@ -27,11 +28,17 @@ export default function HomeScreen({ navigation, route }) {
   }, [route.params?.newTask]);
 
   const toggleDone = (id) => {
-    setData((prev) =>
-      prev.map((item) =>
-        item.id === id ? { ...item, done: !item.done } : item
-      )
-    );
+    setData((prev) => {
+      const task = prev.find((item) => item.id === id);
+      if (task) {
+        // Remove da lista de tarefas ativas
+        const updated = prev.filter((item) => item.id !== id);
+        // Adiciona na lista de tarefas concluídas
+        setFinished((f) => [...f, { ...task, done: true }]);
+        return updated;
+      }
+      return prev;
+    });
   };
 
   const renderItem = ({ item }) => (
@@ -80,10 +87,25 @@ export default function HomeScreen({ navigation, route }) {
       >
         <Text style={styles.buttonText}>Criar Tarefas</Text>
       </TouchableOpacity>
-      <TouchableOpacity style={styles.button} onPress={() => {}}>
+      <TouchableOpacity
+        style={styles.button}
+        onPress={() =>
+          navigation.navigate("TaskCompleted", {
+            finished,
+            setFinished,
+            setData,
+          })
+        }
+      >
         <Text style={styles.buttonText}>Tarefas Concluídas</Text>
       </TouchableOpacity>
-      <TouchableOpacity style={styles.button} onPress={() => setData([])}>
+      <TouchableOpacity
+        style={styles.button}
+        onPress={() => {
+          setData([]);
+          setFinished([]);
+        }}
+      >
         <Text style={styles.buttonText}>Remover Tarefas</Text>
       </TouchableOpacity>
     </View>

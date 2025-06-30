@@ -5,6 +5,7 @@ import { createStackNavigator } from "@react-navigation/stack";
 import HomeScreen from "./screens/HomeScreen";
 import TaskScreen from "./screens/TaskScreen";
 import DetailsCard from "./screens/DetailsCard";
+import TaskFinished from "./screens/TaskFinished";
 
 const Stack = createStackNavigator();
 
@@ -37,6 +38,16 @@ export default function App() {
           component={DetailsCard}
           options={{
             title: "Detalhes",
+            headerStyle: { backgroundColor: "black" },
+            headerTintColor: "#fff",
+            headerLeft: () => null,
+          }}
+        />
+        <Stack.Screen
+          name="TaskCompleted"
+          component={TaskFinished}
+          options={{
+            title: "Tarefas Concluídas",
             headerStyle: { backgroundColor: "black" },
             headerTintColor: "#fff",
             headerLeft: () => null,
