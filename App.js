@@ -1,20 +1,48 @@
-import { StatusBar } from 'expo-status-bar';
-import { StyleSheet, Text, View } from 'react-native';
+import { StatusBar } from "expo-status-bar";
+import { StyleSheet, Text, View } from "react-native";
+import { NavigationContainer } from "@react-navigation/native";
+import { createStackNavigator } from "@react-navigation/stack";
+import HomeScreen from "./screens/HomeScreen";
+import TaskScreen from "./screens/TaskScreen";
+import DetailsCard from "./screens/DetailsCard";
+
+const Stack = createStackNavigator();
 
 export default function App() {
   return (
-    <View style={styles.container}>
-      <Text>Open up App.js to start working on your app!</Text>
-      <StatusBar style="auto" />
-    </View>
+    <NavigationContainer>
+      <Stack.Navigator initialRouteName="Home">
+        <Stack.Screen
+          name="Home"
+          component={HomeScreen}
+          options={{
+            title: "Tela Principal",
+            headerStyle: { backgroundColor: "black" },
+            headerTintColor: "#fff",
+            headerLeft: () => null,
+          }}
+        />
+        <Stack.Screen
+          name="AddTask"
+          component={TaskScreen}
+          options={{
+            title: "Tela de Tarefas",
+            headerStyle: { backgroundColor: "black" },
+            headerTintColor: "#fff",
+            headerLeft: () => null,
+          }}
+        />
+        <Stack.Screen
+          name="Details"
+          component={DetailsCard}
+          options={{
+            title: "Detalhes",
+            headerStyle: { backgroundColor: "black" },
+            headerTintColor: "#fff",
+            headerLeft: () => null,
+          }}
+        />
+      </Stack.Navigator>
+    </NavigationContainer>
   );
 }
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: '#fff',
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
-});
