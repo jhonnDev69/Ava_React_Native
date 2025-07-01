@@ -17,7 +17,7 @@ export default function App() {
           name="Home"
           component={HomeScreen}
           options={{
-            title: "Tela Principal",
+            title: "Tela Principal By Joãozin",
             headerStyle: { backgroundColor: "black" },
             headerTintColor: "#fff",
             headerLeft: () => null,

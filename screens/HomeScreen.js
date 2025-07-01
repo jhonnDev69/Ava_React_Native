@@ -31,9 +31,7 @@ export default function HomeScreen({ navigation, route }) {
     setData((prev) => {
       const task = prev.find((item) => item.id === id);
       if (task) {
-        // Remove da lista de tarefas ativas
         const updated = prev.filter((item) => item.id !== id);
-        // Adiciona na lista de tarefas concluídas
         setFinished((f) => [...f, { ...task, done: true }]);
         return updated;
       }
